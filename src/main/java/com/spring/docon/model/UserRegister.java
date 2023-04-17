@@ -35,5 +35,5 @@ public class UserRegister {
     @NotBlank(message = "Role should not be empty or null.")
     private String role;
 
-//    private Account account;
+    private Account account;
 }

@@ -51,7 +51,7 @@ public class UserRegisterService {
 
         AccountEntity accountEntity = new AccountEntity();
         accountEntity.setPassword(randomPassword);
-//        accountEntity.setEmailId(userRegister.getAccount().getEmailId());
+        accountEntity.setEmailId(userRegister.getAccount().getEmailId());
 
         userRegisterEntity.setAccount(accountEntity);
         accountEntityRepository.save(accountEntity);
@@ -110,14 +110,14 @@ public class UserRegisterService {
         userRepository.findByUserIdAndDeleteFalse(userId);
     }
 
-    public UserResponse addUserByAccountId(Long accountId, UserRegister userRegister) {
+    public UserResponse addUserByAccountId(UserRegister userRegister, Long accountId) {
 
-        Optional<AccountEntity> account=accountEntityRepository.findById(accountId);
+        Optional<AccountEntity> accountEntity=accountEntityRepository.findById(accountId);
         UserRegisterEntity userRegisterEntity1=new UserRegisterEntity();
 
-        if(account.isPresent()){
+        if(accountEntity.isPresent()){
             userRegisterEntity1=userRegisterMapper.modelToEntity(userRegister);
-            userRegisterEntity1.setAccount(account.get());
+            userRegisterEntity1.setAccount(accountEntity.get());
             userRepository.save(userRegisterEntity1);
         }
 
@@ -127,4 +127,27 @@ public class UserRegisterService {
 
 
     }
+
+//    public UserResponse addUserByAccountId(UserRegister userRegister, Long accountId) {
+//        Optional<AccountEntity> accountEntity=accountEntityRepository.findById(accountId);
+//
+//        UserRegisterEntity userRegisterEntity1 = new UserRegisterEntity();
+//
+//        if(accountEntity.isPresent()){
+//
+//            userRegisterEntity1=userRegisterMapper.modelToEntity(userRegister);
+//            userRegisterEntity1.setAccount(accountEntity.get());
+//            userRepository.save(userRegisterEntity1);
+//
+//        }
+//        UserResponse userResponse = new UserResponse();
+//        userResponse.setUserResponseId(userRegisterEntity1.getUserId());
+//        log.info("Response id : {}", userResponse.getUserResponseId());
+//        return userResponse;
+//    }
+
 }
+
+
+
+

@@ -60,9 +60,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/accounts/{accountId}/users")
-    public ResponseEntity<UserResponse> addUsersByAccountId(@PathVariable Long accountId , @RequestBody UserRegister userRegister)
+    public ResponseEntity<UserResponse> addUsersByAccountId(@RequestBody UserRegister userRegister, @PathVariable Long accountId )
     {
-        UserResponse userResponse = userRegisterService.addUserByAccountId(accountId, userRegister);
+        UserResponse userResponse = userRegisterService.addUserByAccountId(userRegister, accountId);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
