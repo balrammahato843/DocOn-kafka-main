@@ -87,11 +87,7 @@ public class UserRegisterService {
         return account;
     }
 
-//    public List<UserRegister> getAllUsersByAccountId(Long accountId) {
-//        List<UserRegisterEntity> userRegisterEntities = userRepository.findAll();
-//        List<UserRegister> userRegister = userRegisterMapper.entityToModels(userRegisterEntities);
-//        return userRegister;
-//    }
+
 
     public List<UserRegister> getAllUsersByAccountId(Long accountId) {
         List<UserRegisterEntity> userRegisterEntities = userRepository.findByAccountId(accountId);
@@ -128,23 +124,7 @@ public class UserRegisterService {
 
     }
 
-//    public UserResponse addUserByAccountId(UserRegister userRegister, Long accountId) {
-//        Optional<AccountEntity> accountEntity=accountEntityRepository.findById(accountId);
-//
-//        UserRegisterEntity userRegisterEntity1 = new UserRegisterEntity();
-//
-//        if(accountEntity.isPresent()){
-//
-//            userRegisterEntity1=userRegisterMapper.modelToEntity(userRegister);
-//            userRegisterEntity1.setAccount(accountEntity.get());
-//            userRepository.save(userRegisterEntity1);
-//
-//        }
-//        UserResponse userResponse = new UserResponse();
-//        userResponse.setUserResponseId(userRegisterEntity1.getUserId());
-//        log.info("Response id : {}", userResponse.getUserResponseId());
-//        return userResponse;
-//    }
+
 
 }
 

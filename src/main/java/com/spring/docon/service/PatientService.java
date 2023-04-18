@@ -11,7 +11,6 @@ import com.spring.docon.repository.PatientRepository;
 import com.spring.docon.repository.UserRepository;
 import com.spring.docon.response.PatientResponse;
 import lombok.extern.log4j.Log4j2;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +27,8 @@ public class PatientService {
     private final PatientMapper patientMapper;
 
     private final EnrollmentService enrollmentService;
-
-    private PatientEntity patientEntity;
-
     private final Enrollment enrollment = new Enrollment();
+    private PatientEntity patientEntity;
 
     @Autowired
     public PatientService(PatientRepository patientRepository, PatientMapper patientMapper, EnrollmentService enrollmentService, AccountRepository accountRepository, UserRepository userRepository) {
@@ -41,21 +38,6 @@ public class PatientService {
         this.accountRepository = accountRepository;
         this.userRepository = userRepository;
     }
-
-//    public PatientResponse addPatient(Patient patient) {
-//        patientEntity = patientMapper.modelToEntity(patient);
-//        patientRepository.save(patientEntity);
-//        log.info("Patient details saved successfully.");
-//
-//        PatientResponse patientResponse = new PatientResponse();
-//        patientResponse.setId(patientEntity.getPatientId());
-//        log.info("Response id : {}", patientResponse.getId());
-//
-//        enrollmentService.createEnrollment(patientEntity.getPatientId(), enrollment);
-//        log.info("Create enrollment method has been called.");
-//
-//        return patientResponse;
-//    }
 
     public PatientResponse addPatient(Patient patient) {
         patientEntity = patientMapper.modelToEntity(patient);
